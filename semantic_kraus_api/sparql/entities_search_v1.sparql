@@ -1,0 +1,35 @@
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX bds: <http://www.bigdata.com/rdf/search#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX frbroo: <https://cidoc-crm.org/frbroo/sites/default/files/FRBR2.4-draft.rdfs#>
+
+
+SELECT ?subject ?type ?typeLabel ?count ?label
+
+WITH {
+    SELECT (COUNT(?subject) as ?count)
+    WHERE {
+        {% include 'search_entities_sub_v1.sparql' %}
+    }
+} as %count_set
+
+WITH {
+    SELECT ?subject ?type ?score
+    WHERE {
+        {% include 'search_entities_sub_v1.sparql' %}
+    }
+ {% if q %}ORDER BY DESC(?score) ?subject {% else %} ORDER BY ?subject {% endif %}
+LIMIT {{limit}}
+{% if _offset > 0 %}OFFSET {{_offset}}{% endif %}
+} AS %query_set
+
+WHERE {
+    INCLUDE %count_set
+    INCLUDE %query_set                    
+    ?subject rdfs:label|skos:prefLabel ?label . 
+    OPTIONAL {?type rdfs:label ?typeLabel .
+        FILTER(LANG(?typeLabel) = "en")
+}} 

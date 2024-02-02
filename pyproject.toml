@@ -25,6 +25,8 @@ version = "0.1.0"
 description = ""
 authors = [ "Matthias Schlögl <matthias.schloegl@oeaw.ac.at>" ]
 license = "MIT"
+packages = [{include = "semantic_kraus_api"}]
+
 
   [tool.poetry.dependencies]
   python = "^3.10"

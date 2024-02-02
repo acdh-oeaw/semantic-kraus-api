@@ -1,3 +1,12 @@
+## [0.2.4](https://github.com/acdh-oeaw/semantic-kraus-api/compare/v0.2.3...v0.2.4) (2024-02-02)
+
+
+### Bug Fixes
+
+* small change for triggering action ([901d980](https://github.com/acdh-oeaw/semantic-kraus-api/commit/901d980aa6f3e07884a7f961caa75a660cf69828))
+
+
+
 ## [0.2.3](https://github.com/acdh-oeaw/semantic-kraus-api/compare/v0.2.2...v0.2.3) (2024-02-02)
 
 

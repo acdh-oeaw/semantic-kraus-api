@@ -26,9 +26,10 @@ COPY ./pyproject.toml ./poetry.lock* /app/
 # Allow installing dev dependencies to run tests
 ARG INSTALL_DEV=false
 
+COPY . /app
+
 RUN pip install .
 
-COPY . /app
 
 ENV PYTHONPATH=/app
 

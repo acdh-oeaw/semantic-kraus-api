@@ -21,7 +21,7 @@ profile = "black"
 
 [tool.poetry]
 name = "semantic-kraus-api"
-version = "0.2.2"
+version = "0.2.3"
 description = ""
 authors = [ "Matthias Schlögl <matthias.schloegl@oeaw.ac.at>" ]
 license = "MIT"

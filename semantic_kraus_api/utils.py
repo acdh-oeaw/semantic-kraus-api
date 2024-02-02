@@ -7,8 +7,6 @@ from SPARQLWrapper import SPARQLWrapper, JSON
 from jinja2 import Environment, FileSystemLoader
 
 from semantic_kraus_api.query_parameters import QueryBase, Search
-from .conversion import convert_sparql_result
-from SPARQLTransformer import pre_process
 
 
 jinja_env = Environment(loader=FileSystemLoader(os.path.join(os.path.dirname(__file__), "sparql")), autoescape=False)

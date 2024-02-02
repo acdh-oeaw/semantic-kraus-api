@@ -1,4 +1,13 @@
-# 0.2.0 (2024-02-02)
+## [0.2.1](https://github.com/acdh-oeaw/semantic-kraus-api/compare/v0.2.0...v0.2.1) (2024-02-02)
+
+
+### Bug Fixes
+
+* install process failed ([27ce768](https://github.com/acdh-oeaw/semantic-kraus-api/commit/27ce768aafeae5587d8a1b6c41617558b75e983c))
+
+
+
+# [0.2.0](https://github.com/acdh-oeaw/semantic-kraus-api/compare/b4c92756b9f13c2b151507110ecae8cb611d3076...v0.2.0) (2024-02-02)
 
 
 ### Bug Fixes

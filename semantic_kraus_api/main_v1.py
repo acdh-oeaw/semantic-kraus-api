@@ -37,8 +37,7 @@ async def query_entities(search: Search = Depends()):
     description="Endpoint that allows to retrive a person by id.",
 )
 async def retrieve_person(query: GetEntity = Depends()):
-    query_dict = asdict(query)
-    res = get_query_from_triplestore_v2(query_dict, "get_person_v1.sparql")
+    res = get_query_from_triplestore(query, "get_person_v1.sparql")
     # res = FakeList(**{"results": flatten_rdf_data(res)})
     if len(res) == 0:
         raise HTTPException(status_code=404, detail="Item not found")

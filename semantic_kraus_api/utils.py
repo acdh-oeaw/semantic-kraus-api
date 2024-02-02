@@ -21,7 +21,7 @@ if not sparql_endpoint.startswith("http://127.0.0.1:8080"):
     sparql.setCredentials(user=os.environ.get("SPARQL_USER"), passwd=os.environ.get("SPARQL_PASSWORD"))
 
 
-def get_query_from_triplestore(search: Search | QueryBase , sparql_template: str):
+def get_query_from_triplestore(search: Search | QueryBase, sparql_template: str):
     """creates the query from the template and the search parameters and returns the json
        from the triplestore. This is v2 and doesnt need the proto config anymore
 
@@ -32,7 +32,7 @@ def get_query_from_triplestore(search: Search | QueryBase , sparql_template: str
     Returns:
         _type_: _description_
     """
-    if isinstance(search, Search):
+    if type(search).__module__ == "semantic_kraus_api.query_parameters":
         search = asdict(search)
     query_template = jinja_env.get_template(sparql_template).render(**search)
     sparql.setQuery(query_template)

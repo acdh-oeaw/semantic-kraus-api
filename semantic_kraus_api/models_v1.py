@@ -55,16 +55,12 @@ class SameAs(SemanticKrausBackendBaseModel):
 class ProfessionalOccupation(SemanticKrausBackendBaseModel):
     """Used to provide professional occupation information"""
 
-    id: HttpUrl = Field(..., rdfconfig=FieldConfigurationRDF(path="professionalOccupation", anchor=True))
+    id: HttpUrl = Field(..., rdfconfig=FieldConfigurationRDF(path="occ", anchor=True))
     label: InternationalizedLabel = Field(
-        ..., rdfconfig=FieldConfigurationRDF(path="professionalOccupationLabel", default_dict_key="default")
+        ..., rdfconfig=FieldConfigurationRDF(path="occupation", default_dict_key="default")
     )
-    source: str = Field(
-        ...,
-        rdfconfig=FieldConfigurationRDF(
-            path="professionalOccupationSource", callback_function=pp_source_professional_occupation
-        ),
-    )
+    time: str | None = Field(None, rdfconfig=FieldConfigurationRDF(path="time"))
+    employer: str | None = Field(None, rdfconfig=FieldConfigurationRDF(path="employer"))
 
 
 class Entity(SemanticKrausBackendBaseModel):
@@ -87,15 +83,32 @@ class Entity(SemanticKrausBackendBaseModel):
         super().__init__(**data)
 
 
+class PersonName(SemanticKrausBackendBaseModel):
+    id: str = Field(..., rdfconfig=FieldConfigurationRDF(path="appellation", anchor=True))
+    label: str | None = Field(None, rdfconfig=FieldConfigurationRDF(path="name"))
+    type: list[str] | None = Field(None, rdfconfig=FieldConfigurationRDF(path="typeLabel"))
+
+    def __init__(__pydantic_self__, **data: typing.Any) -> None:
+        if type(data["typeLabel"]) == str:
+            data["typeLabel"] = [data["typeLabel"]]
+        super().__init__(**data)
+
+
 class Person(SemanticKrausBackendBaseModel):
     id: str = Field(
         ...,
         rdfconfig=FieldConfigurationRDF(path="person", anchor=True),
     )
-    label: InternationalizedLabel | None = Field(
-        None, rdfconfig=FieldConfigurationRDF(path="label", default_dict_key="default")
-    )
+    label: list[PersonName] | None
     professions: typing.List[ProfessionalOccupation] | None
+    graph: HttpUrl | None = Field(None, rdfconfig=FieldConfigurationRDF(path="graph_subject"))
+    graph_label: str | None = Field(None, rdfconfig=FieldConfigurationRDF(path="graph_subjectLabel"))
+    SameAs: typing.List[SameAs] | None
+
+    def __init__(__pydantic_self__, **data: typing.Any) -> None:
+        if "graph_subject" in data:
+            data["graph_subjectLabel"] = graph_mapping.get(data["graph_subject"], None)
+        super().__init__(**data)
 
 
 class PaginatedResponseBase(SemanticKrausBackendBaseModel):

@@ -1,3 +1,12 @@
+## [0.2.2](https://github.com/acdh-oeaw/semantic-kraus-api/compare/v0.2.1...v0.2.2) (2024-02-02)
+
+
+### Bug Fixes
+
+* missing folder for install ([9ef258f](https://github.com/acdh-oeaw/semantic-kraus-api/commit/9ef258fddec984a6b5fd249b8f4c14edf3c8860c))
+
+
+
 ## [0.2.1](https://github.com/acdh-oeaw/semantic-kraus-api/compare/v0.2.0...v0.2.1) (2024-02-02)
 
 

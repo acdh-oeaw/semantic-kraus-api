@@ -7,7 +7,7 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX frbroo: <https://cidoc-crm.org/frbroo/sites/default/files/FRBR2.4-draft.rdfs#>
 
 
-SELECT ?subject ?type ?typeLabel ?count ?label
+SELECT ?subject ?type ?typeLabel ?count ?label ?graph ?sameAs ?objectLabel ?graph_subject 
 
 WITH {
     SELECT (COUNT(?subject) as ?count)
@@ -20,7 +20,8 @@ WITH {
     SELECT ?subject ?type ?score
     WHERE {
         {% include 'search_entities_sub_v1.sparql' %}
-    }
+        }
+    
  {% if q %}ORDER BY DESC(?score) ?subject {% else %} ORDER BY ?subject {% endif %}
 LIMIT {{limit}}
 {% if _offset > 0 %}OFFSET {{_offset}}{% endif %}
@@ -28,8 +29,18 @@ LIMIT {{limit}}
 
 WHERE {
     INCLUDE %count_set
-    INCLUDE %query_set                    
-    ?subject rdfs:label|skos:prefLabel ?label . 
+    INCLUDE %query_set
+GRAPH ?graph_subject {
+    ?subject rdfs:label|skos:prefLabel ?label . }
     OPTIONAL {?type rdfs:label ?typeLabel .
-        FILTER(LANG(?typeLabel) = "en")
-}} 
+        FILTER(LANG(?typeLabel) = "en")}
+    OPTIONAL {
+        GRAPH ?graph {
+            ?subject ((owl:sameAs|^owl:sameAs)*) ?sameAs .
+      		FILTER(?subject != ?sameAs)
+            OPTIONAL {?sameAs rdfs:label ?objectLabel .}
+      		
+        }
+    }
+        
+        } 

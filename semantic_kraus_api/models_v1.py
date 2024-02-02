@@ -6,6 +6,17 @@ from rdf_fastapi_utils.models import FieldConfigurationRDF, RDFUtilsModelBaseCla
 from fastapi_versioning import version, versioned_api_route
 from fastapi import APIRouter, Depends, HTTPException
 
+graph_mapping = {
+    "https://sk.acdh.oeaw.ac.at/project/dritte-walpurgisnacht": "Dritte Walpurgisnacht",
+    "https://sk.acdh.oeaw.ac.at/project/legal-kraus": "Legal Kraus Project",
+    "https://sk.acdh.oeaw.ac.at/project/fackel": "Die Fackel online",
+}
+
+
+def pp_source_professional_occupation(field, item, data) -> dict:
+    print("test")
+    return item
+
 
 class SemanticKrausBackendBaseModel(RDFUtilsModelBaseClass):
     errors: typing.List[str] | None = None
@@ -22,12 +33,38 @@ class InternationalizedLabel(SemanticKrausBackendBaseModel):
     default: str
     en: typing.Optional[str]
     de: str | None = None
-    fi: str | None = None
-    si: str | None = None
-    du: str | None = None
 
     def __init__(__pydantic_self__, **data: typing.Any) -> None:
         super().__init__(**data)
+
+
+class SameAs(SemanticKrausBackendBaseModel):
+    """Used to provide source information"""
+
+    id: HttpUrl = Field(..., rdfconfig=FieldConfigurationRDF(path="sameAs", anchor=True))
+    object_label: str | None = Field(None, rdfconfig=FieldConfigurationRDF(path="objectLabel"))
+    graph: HttpUrl | None = Field(None, rdfconfig=FieldConfigurationRDF(path="graph"))
+    graph_label: str | None = Field(None, rdfconfig=FieldConfigurationRDF(path="graphLabel"))
+
+    def __init__(__pydantic_self__, **data: typing.Any) -> None:
+        if "graph" in data:
+            data["graphLabel"] = graph_mapping.get(data["graph"], data["graph"])
+        super().__init__(**data)
+
+
+class ProfessionalOccupation(SemanticKrausBackendBaseModel):
+    """Used to provide professional occupation information"""
+
+    id: HttpUrl = Field(..., rdfconfig=FieldConfigurationRDF(path="professionalOccupation", anchor=True))
+    label: InternationalizedLabel = Field(
+        ..., rdfconfig=FieldConfigurationRDF(path="professionalOccupationLabel", default_dict_key="default")
+    )
+    source: str = Field(
+        ...,
+        rdfconfig=FieldConfigurationRDF(
+            path="professionalOccupationSource", callback_function=pp_source_professional_occupation
+        ),
+    )
 
 
 class Entity(SemanticKrausBackendBaseModel):
@@ -40,6 +77,25 @@ class Entity(SemanticKrausBackendBaseModel):
     )
     entity_class: HttpUrl = Field(..., rdfconfig=FieldConfigurationRDF(path="type"))
     entity_class_label: str = Field(..., rdfconfig=FieldConfigurationRDF(path="typeLabel"))
+    graph: HttpUrl | None = Field(None, rdfconfig=FieldConfigurationRDF(path="graph_subject"))
+    graph_label: str | None = Field(None, rdfconfig=FieldConfigurationRDF(path="graph_subjectLabel"))
+    SameAs: typing.List[SameAs] | None
+
+    def __init__(__pydantic_self__, **data: typing.Any) -> None:
+        if "graph_subject" in data:
+            data["graph_subjectLabel"] = graph_mapping.get(data["graph_subject"], None)
+        super().__init__(**data)
+
+
+class Person(SemanticKrausBackendBaseModel):
+    id: str = Field(
+        ...,
+        rdfconfig=FieldConfigurationRDF(path="person", anchor=True),
+    )
+    label: InternationalizedLabel | None = Field(
+        None, rdfconfig=FieldConfigurationRDF(path="label", default_dict_key="default")
+    )
+    professions: typing.List[ProfessionalOccupation] | None
 
 
 class PaginatedResponseBase(SemanticKrausBackendBaseModel):

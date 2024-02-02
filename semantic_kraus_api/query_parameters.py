@@ -38,3 +38,8 @@ class Search(QueryBase):
         ],
         description="Filter by entity type. Can be multiple",
     )
+
+
+@dataclasses.dataclass(kw_only=True)
+class GetEntity:
+    id: str = Query(..., description="The id of the entity to retrieve")

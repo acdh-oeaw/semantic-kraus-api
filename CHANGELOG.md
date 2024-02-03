@@ -1,3 +1,12 @@
+## [0.2.7](https://github.com/acdh-oeaw/semantic-kraus-api/compare/v0.2.6...v0.2.7) (2024-02-03)
+
+
+### Bug Fixes
+
+* changes to cluster 2 deploy flow ([84bdfc7](https://github.com/acdh-oeaw/semantic-kraus-api/commit/84bdfc784761dab3aa2cf14a487b54f4348a4381))
+
+
+
 ## [0.2.6](https://github.com/acdh-oeaw/semantic-kraus-api/compare/v0.2.5...v0.2.6) (2024-02-03)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * adds readme ([b8dcabe](https://github.com/acdh-oeaw/semantic-kraus-api/commit/b8dcabe56190de64fd13a3c4539dfcf0b042f2ca))
-
-
-
-## [0.2.2](https://github.com/acdh-oeaw/semantic-kraus-api/compare/v0.2.1...v0.2.2) (2024-02-02)
-
-
-### Bug Fixes
-
-* missing folder for install ([9ef258f](https://github.com/acdh-oeaw/semantic-kraus-api/commit/9ef258fddec984a6b5fd249b8f4c14edf3c8860c))
 
 
 

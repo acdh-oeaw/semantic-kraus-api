@@ -1,3 +1,12 @@
+## [0.2.8](https://github.com/acdh-oeaw/semantic-kraus-api/compare/v0.2.7...v0.2.8) (2024-02-03)
+
+
+### Bug Fixes
+
+* setts to 4 workers ([a234745](https://github.com/acdh-oeaw/semantic-kraus-api/commit/a234745e9872ef7fcad95d8cf750892d7eb3c5af))
+
+
+
 ## [0.2.7](https://github.com/acdh-oeaw/semantic-kraus-api/compare/v0.2.6...v0.2.7) (2024-02-03)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * small change for triggering action ([901d980](https://github.com/acdh-oeaw/semantic-kraus-api/commit/901d980aa6f3e07884a7f961caa75a660cf69828))
-
-
-
-## [0.2.3](https://github.com/acdh-oeaw/semantic-kraus-api/compare/v0.2.2...v0.2.3) (2024-02-02)
-
-
-### Bug Fixes
-
-* adds readme ([b8dcabe](https://github.com/acdh-oeaw/semantic-kraus-api/commit/b8dcabe56190de64fd13a3c4539dfcf0b042f2ca))
 
 
 

@@ -1,3 +1,12 @@
+## [0.2.6](https://github.com/acdh-oeaw/semantic-kraus-api/compare/v0.2.5...v0.2.6) (2024-02-03)
+
+
+### Bug Fixes
+
+* add manual build trigger ([0d84ea4](https://github.com/acdh-oeaw/semantic-kraus-api/commit/0d84ea43c04b6851e55262ff1e351722098c999f))
+
+
+
 ## [0.2.5](https://github.com/acdh-oeaw/semantic-kraus-api/compare/v0.2.4...v0.2.5) (2024-02-02)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * missing folder for install ([9ef258f](https://github.com/acdh-oeaw/semantic-kraus-api/commit/9ef258fddec984a6b5fd249b8f4c14edf3c8860c))
-
-
-
-## [0.2.1](https://github.com/acdh-oeaw/semantic-kraus-api/compare/v0.2.0...v0.2.1) (2024-02-02)
-
-
-### Bug Fixes
-
-* install process failed ([27ce768](https://github.com/acdh-oeaw/semantic-kraus-api/commit/27ce768aafeae5587d8a1b6c41617558b75e983c))
 
 
 

@@ -18,7 +18,7 @@ jobs:
       default_port: "5000"
       APP_NAME: skbackend
 # This together with the branch name is also used as the namespace to deploy to
-      APP_ROOT: "/"
+      APP_ROOT: "/v1/docs"
       SERVICE_ID: ""
       PUBLIC_URL: https://sk-backend.acdh-ch-dev.oeaw.ac.at
       POSTGRES_ENABLED: "false"

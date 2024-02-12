@@ -1,3 +1,12 @@
+## [0.2.9](https://github.com/acdh-oeaw/semantic-kraus-api/compare/v0.2.8...v0.2.9) (2024-02-12)
+
+
+### Bug Fixes
+
+* changes APP_ROOT to fix health checks ([618f5ac](https://github.com/acdh-oeaw/semantic-kraus-api/commit/618f5acd0e0d3a5c9d7358d09884a1fc6cdd23ae))
+
+
+
 ## [0.2.8](https://github.com/acdh-oeaw/semantic-kraus-api/compare/v0.2.7...v0.2.8) (2024-02-03)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * re-trigger action ([008c3d0](https://github.com/acdh-oeaw/semantic-kraus-api/commit/008c3d0b9804f4c9c05cb97b4701857b18fb069d))
-
-
-
-## [0.2.4](https://github.com/acdh-oeaw/semantic-kraus-api/compare/v0.2.3...v0.2.4) (2024-02-02)
-
-
-### Bug Fixes
-
-* small change for triggering action ([901d980](https://github.com/acdh-oeaw/semantic-kraus-api/commit/901d980aa6f3e07884a7f961caa75a660cf69828))
 
 
 
